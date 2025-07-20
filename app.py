@@ -1,7 +1,30 @@
 from flask import Flask, render_template, request
+from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import JSON
+from sqlalchemy.exc import IntegrityError
 from helper import is_valid_email, apology
+from dotenv import load_dotenv
+import os
+
 
 app = Flask(__name__)
+# connect to local postgresDB for development phase
+load_dotenv()
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
+
+# model for table storing users' gmail
+class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(255), unique=True, nullable=False)
+    categories = db.Column(JSON, nullable=False)
+
+# create table once
+with app.app_context():
+    db.create_all()
+
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -14,7 +37,19 @@ def index():
         categories = request.form.getlist("categories")
         if not categories:
             return apology("Please select at least one category")
+
+        # check if email is already in database
+        try:
+            # insert user's info to postgresDB
+            new_user = Users(email=email, categories=categories)
+            db.session.add(new_user)
+            db.session.commit()
+        except IntegrityError:
+            db.session.rollback()
+            return apology("Email is already taken")
+
         return render_template("success.html")
+
     return render_template("index.html")
 
 if __name__ == "__main__":

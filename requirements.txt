@@ -1,2 +1,6 @@
 flask
 helper
+flask_sqlalchemy
+dotenv
+sqlalchemy
+sqlalchemy.exc
