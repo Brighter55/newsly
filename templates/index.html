@@ -11,23 +11,18 @@
         <label for="category3">Politics</label>
         <button type="submit">Get started</button>
     </form>
-    <script>
-        /*require at least one category be selected*/
-        let form = document.getElementById("categories");
-        let checkboxes = form.querySelectorAll("input[type='checkbox']");
-
-        form.addEventListener("submit", function(event){
-            let is_checked = false;
-            checkboxes.forEach(function(checkbox) {
-                if (checkbox.checked) {
-                    is_checked = true;
-                }
-            });
-
-            if (!is_checked) {
-                event.preventDefault();
-                alert("Please select at least one category");
-            }
-        });
-    </script>
+    <div id="container">
+        <div id="successful_popup">
+            <i class="fa-regular fa-circle-check" style="color: #229e00;"></i>
+            <h2>Completed</h2>
+            <p>You have successfully register for the daily news</p>
+            <button id="successful_ok" class="ok_button">Ok</button>
+        </div>
+        <div id="failed_popup">
+            <i class="fa-solid fa-xmark" style="color: #fb2323;"></i>
+            <h2>Unsuccessful</h2>
+            <p id="error_message"></p> <!---wait for error_message--->
+            <button id="failed_ok" class="ok_button">Ok</button>
+        </div>
+    </div>
 {% endblock %}
