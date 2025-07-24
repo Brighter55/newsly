@@ -36,7 +36,7 @@ def index():
         # get user's category preference and check if user select at least one category
         categories = request.form.getlist("categories")
         if not categories:
-            return jsonnify({"success": False, "error_message": "Please select at least one category"})
+            return jsonify({"success": False, "error_message": "Please select at least one category"})
 
         # check if email is already in database
         try:
