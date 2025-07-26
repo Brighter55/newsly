@@ -5,11 +5,12 @@ from sqlalchemy.exc import IntegrityError
 from helper import is_valid_email, apology
 from dotenv import load_dotenv
 import os
-
+from pathlib import Path
 
 app = Flask(__name__)
 # connect to local postgresDB for development phase
-load_dotenv()
+root_dir = Path(__file__).resolve().parents[1]
+load_dotenv(root_dir / ".env")
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
