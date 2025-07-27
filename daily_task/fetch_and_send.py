@@ -7,6 +7,10 @@ from openai import OpenAI
 from pymongo import MongoClient
 from pathlib import Path
 import json
+from sqlalchemy import create_engine, Column, Integer, String, JSON
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+
 
 def clean(text):
     lines = []
@@ -86,3 +90,24 @@ for category in links:
         db = mongo_client.testdb
         collection = db.summaries
         collection.insert_one(reply)
+
+# Shipping through gmail
+    # 1. get "users" from postgresDB
+    # 2. loop through "users" and construct html_content based on their categories
+        # 2.1 make a layout for gmail
+        # 2.2 make content for every category and construct based on users categories
+engine = create_engine(os.getenv("DATABASE_URL"))
+Session = sessionmaker(bind=engine)
+session = Session()
+Base = declarative_base()
+
+class Users(Base):
+    __tablename__ = "users"
+    id = Column(Integer, primary_key=True)
+    email = Column(String, unique=True, nullable=False)
+    categories = Column(JSON, nullable=False)
+
+user_objects = session.query(Users).all()
+users = []
+for user in user_objects:
+    users.append({"email": user.email, "categories": user.categories})
