@@ -20,6 +20,10 @@ def clean(text):
             lines.append(line)
     return "\n".join(lines)
 
+def email_layout(categories):
+    html_content = """
+    """
+
 # get links
 utc_datetime = datetime.now(timezone.utc)
 utc_date = utc_datetime.date()

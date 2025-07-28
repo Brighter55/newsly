@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <h1>Full Summary of {{ news["Title"] }} from {{ news["categories"] }} category</h1>
+    <h2>Short Summary: {{ news["Short Summary"] }}</h2>
+    <h2>What: {{ news["What"] }}</h2>
+    <h2>When: {{ news["When"] }}</h2>
+    <h2>Where: {{ news["Where"] }}</h2>
+    <h2>Who: {{ news["Who"] }}</h2>
+    <h2>How: {{ news["How"] }}</h2>
+    <h2>Date: {{ news["date"] }}</h2>
+    <h2><a href='{{ news["url"] }}'>Source</a></h2>
+{% endblock %}

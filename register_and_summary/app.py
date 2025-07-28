@@ -6,6 +6,9 @@ from helper import is_valid_email, apology
 from dotenv import load_dotenv
 import os
 from pathlib import Path
+from pymongo import MongoClient
+from bson import ObjectId
+
 
 app = Flask(__name__)
 # connect to local postgresDB for development phase
@@ -28,7 +31,7 @@ with app.app_context():
 
 
 @app.route("/", methods=["GET", "POST"])
-def index():
+def register():
     if request.method == "POST":
         email = request.form.get("email")
         # validate email server-side
@@ -50,6 +53,17 @@ def index():
             return jsonify({"success": False, "error_message": "Email is already taken"})
         return jsonify({"success": True})
     return render_template("index.html")
+
+@app.route("/summary/<string:news_id>")
+def summary(news_id):
+    # get news data from mongodb
+    # direct user to "full_summary.html"
+    client = MongoClient("localhost", 27017)
+    db = client.testdb
+    collection = db.summaries
+    news = collection.find({"_id": ObjectId(news_id)})[0]
+    return render_template("full_summary.html", news=news)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
