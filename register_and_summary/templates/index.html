@@ -1,16 +1,6 @@
 {% extends "layout.html" %}
 
 {% block main %}
-    <form action="/" method="post" id="categories">
-        <input name="email" type="email" placeholder="Enter your email">
-        <input name="categories" type="checkbox" id="category1" value="World Events">
-        <label for="category1">World Events</label>
-        <input name="categories" type="checkbox" id="category2" value="Business">
-        <label for="category2">Business</label>
-        <input name="categories" type="checkbox" id="category3" value="Politics">
-        <label for="category3">Politics</label>
-        <button type="submit">Get started</button>
-    </form>
     <div id="container">
         <div id="successful_popup">
             <i class="fa-regular fa-circle-check" style="color: #229e00;"></i>
@@ -25,4 +15,34 @@
             <button id="failed_ok" class="ok_button">Ok</button>
         </div>
     </div>
+    <section id="register">
+        <div class="alignment">
+            <header>
+                <span style="color: #db0000; font-family: Tahoma; font-size: 50px; height: 100%;">Newsly</span>
+                <nav>
+                    <ul>
+                        <li><a href="#register">Register</a></li>
+                        <li><a href="#demo">Demo</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <div id="register_contents">
+                <h1 id="text1">Recieve summarized news daily!</h1>
+                <h3 id="text2">Only email is needed</h3>
+                <form action="/" method="post" id="categories">
+                    <input id="email_input" name="email" type="email" placeholder="Email address">
+                    <input name="categories" type="checkbox" id="category1" value="World Events">
+                    <label for="category1">World Events</label>
+                    <input name="categories" type="checkbox" id="category2" value="Business">
+                    <label for="category2">Business</label>
+                    <input name="categories" type="checkbox" id="category3" value="Politics">
+                    <label for="category3">Politics</label>
+                    <button id="submit_button" type="submit">Get Started ></button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <section id="#demo"></section>
+    <footer></footer>
+
 {% endblock %}
