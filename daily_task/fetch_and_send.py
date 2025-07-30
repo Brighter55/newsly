@@ -10,19 +10,8 @@ import json
 from sqlalchemy import create_engine, Column, Integer, String, JSON
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
+from helper import create_html_body, clean, create_html_message
 
-
-def clean(text):
-    lines = []
-    for line in text.splitlines():
-        line = line.strip()
-        if line:
-            lines.append(line)
-    return "\n".join(lines)
-
-def email_layout(categories):
-    html_content = """
-    """
 
 # get links
 utc_datetime = datetime.now(timezone.utc)
@@ -73,6 +62,8 @@ for article in articles:
 #scrape website and send to openai and store data in MongoDB
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 mongo_client = MongoClient("localhost", 27017)
+db = mongo_client.testdb
+collection = db.summaries
 for category in links:
     for link in links[category]:
         article = Article(link)
@@ -91,27 +82,58 @@ for category in links:
         reply["date"] = utc_yesterday
         reply["url"] = link
         reply["categories"] = category
-        db = mongo_client.testdb
-        collection = db.summaries
         collection.insert_one(reply)
 
-# Shipping through gmail
-    # 1. get "users" from postgresDB
-    # 2. loop through "users" and construct html_content based on their categories
-        # 2.1 make a layout for gmail
-        # 2.2 make content for every category and construct based on users categories
+
+# construct bodies for html_email
+html_bodies_data = {"Business": [], "World Events": [], "Politics": []}
+for summary in collection.find({"date": utc_yesterday}):
+    body = create_html_body(summary)
+    html_bodies_data[summary["categories"]].append(body)
+
+# get users data from postgresDB
 engine = create_engine(os.getenv("DATABASE_URL"))
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
 
-class Users(Base):
+class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
     email = Column(String, unique=True, nullable=False)
     categories = Column(JSON, nullable=False)
 
-user_objects = session.query(Users).all()
+user_objects = session.query(User).all()
 users = []
 for user in user_objects:
     users.append({"email": user.email, "categories": user.categories})
+
+# send emails to every user
+url = "https://bulk.api.mailtrap.io/api/send"
+for user in users:
+    html_body = ""
+    for category in user["categories"]:
+        for bodies_category in html_bodies_data:
+            if category == bodies_category:
+                for body in html_bodies_data[category]:
+                    html_body = html_body + body
+    html_message = create_html_message(html_body, user["categories"])
+    payload = {
+        "from": {
+            "email": "noreply@new-sly.com",
+            "name": "Newsly Summarizer AI",
+        },
+        "to": [
+            {
+                "email": user["email"],
+            }
+        ],
+        "subject": f"Your Newsly for {utc_yesterday}",
+        "html": html_message,
+        "category": "Summaries",
+    }
+    headers = {
+        "Authorization": os.getenv("MAILTRAP_TOKEN"),
+        "Content-Type": "application/json"
+    }
+    requests.request("POST", url, headers=headers, json=payload)
