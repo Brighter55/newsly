@@ -1,3 +1,7 @@
+html {
+  scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
     font-family: "Poppins", sans-serif;
@@ -130,6 +134,7 @@ nav ul a {
     padding: 16px;
     color: white;
     font-size: 20px;
+    border-radius: 5px;
 }
 
 #submit_button {
@@ -139,6 +144,110 @@ nav ul a {
     font-size: 25px;
     background: #db0000;
     color: white;
+    border-radius: 5px;
 }
 
+#submit_button:hover {
+    cursor: pointer;
+}
+
+/*demo section*/
+#demo {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    color: black;
+}
+
+#demo_contents {
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#demo_text {
+    align-self: center;
+}
+
+#demo h1 {
+    max-width: 400px;
+    height: 50px;
+}
+
+#demo h2 {
+    font-size: 16px;
+    font-weight: normal;
+    color: grey;
+}
+
+#video {
+    width: 650px;
+    height: 366px;
+}
+
+/*footer section*/
+footer {
+    min-height: 40vh;
+    display: flex;
+    background-color: black;
+    color: white;
+}
+.headers {
+    font-family: Helvetica, sans-serif;
+}
+
+.footer_text {
+    line-height: 2;
+}
+
+#about {
+    flex: 1;
+    margin: 30px;
+}
+
+#question {
+    flex: 1;
+    margin: 30px;
+}
+
+#question a {
+    color: white;
+    text-decoration: none;
+}
+
+#question a:hover {
+    text-decoration: underline;
+}
+
+#social {
+    flex: 1;
+    margin: 30px;
+}
+
+#social_medias_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.social_medias {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    gap: 15px;
+}
+
+.social_medias a {
+    text-decoration: none;
+    color: white;
+}
+
+.glow a:hover {
+    text-shadow: 0 0 3px #fff;
+}
+
+#social i {
+    font-size: 30px;
+}
 

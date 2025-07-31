@@ -20,7 +20,7 @@
             <header>
                 <span style="color: #db0000; font-family: Tahoma; font-size: 50px; height: 100%;">Newsly</span>
                 <nav>
-                    <ul>
+                    <ul class="glow">
                         <li><a href="#register">Register</a></li>
                         <li><a href="#demo">Demo</a></li>
                     </ul>
@@ -42,7 +42,43 @@
             </div>
         </div>
     </section>
-    <section id="#demo"></section>
-    <footer></footer>
+    <section id="demo">
+        <div id="demo_contents" class="alignment">
+            <div id="demo_text">
+                <h1>Why and How to use it?</h1>
+                <h2>Watch our demo</h2>
+            </div>
+            <div id="video">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TcMBFSGVi1c?si=6tL28PM4I1ie09H0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 15px; border: 2px solid lightgrey; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);"></iframe>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div id="about">
+            <h1 class="headers">About</h1>
+            <h4 class="footer_text">Newsly is an app I create because I, myself, feel like I lack knowledge about the world around me. I am also quite illiterate which is why I include an AI to break down news for me. Hope this app helps others like me :)</h4>
+        </div>
+        <div id="question">
+            <h1 class="headers">Questions or ideas for me?</h1>
+            <h4 class="footer_text">Feel free to email me at <a href="mailto:sriphrakhunpiyawit@gmail.com">sriphrakhunpiyawit@gmail.com</a></h4>
+        </div>
+        <div id="social">
+            <h1 class="headers">Socials</h1>
+            <div id="social_medias_container">
+                <div class="social_medias glow">
+                    <a href="https://www.linkedin.com/in/piyawit-sriphrakhun-a3956335a/"><i class="devicon-linkedin-plain"></i></a>
+                    <h4 class="footer_text" style="margin: 0;">Linkedin</h4>
+                </div>
+                <div class="social_medias glow">
+                    <a href="https://github.com/Brighter55"><i class="devicon-github-original-wordmark"></i></a>
+                    <h4 class="footer_text" style="margin: 0;">Github</h4>
+                </div>
+                <div class="social_medias glow">
+                    <a href="https://www.youtube.com/@PiyawitSriphrakhun"><i class="fa fa-youtube-play"></i></a>
+                    <h4 class="footer_text" style="margin: 0;">Youtube</h4>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 {% endblock %}
