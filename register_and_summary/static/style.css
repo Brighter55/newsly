@@ -20,7 +20,6 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
     height: 100vh;
     z-index: 999;
     pointer-events: none;
@@ -121,6 +120,8 @@ nav ul a {
 
 #categories {
     display: flex;
+    justify-content: center;
+    width: 100%;
     align-items: center;
     gap: 10px;
 }
@@ -249,5 +250,70 @@ footer {
 
 #social i {
     font-size: 30px;
+}
+
+@media (max-width: 1150px) {
+    .alignment {
+        max-width: 800px;
+        min-width: auto;
+}
+    #demo_contents {
+        justify-content: space-around;
+        width: 800px;
+        gap: 20px;
+    }
+
+    #demo_video {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    #video {
+        width: 100%;
+    }
+}
+
+@media (max-width: 832px) {
+    #categories {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    #demo_contents {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    #demo_text {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #demo h1 {
+        align-content: center;
+        margin-bottom: 0;
+    }
+
+    #demo_video {
+        width: 465px;
+        height: 262px;
+    }
+
+    #video {
+        height: 100%;
+    }
+
+    footer {
+        flex-direction: column;
+    }
+
+    #social_medias_container {
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
 }
 
