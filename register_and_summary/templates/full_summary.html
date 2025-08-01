@@ -1,13 +1,63 @@
-{% extends "layout.html" %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Newsly</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/summary_style.css">
+    </head>
+    <body>
+        <header>
+            <div id="header_content" class="alignment">
+                <span style="color: #db0000; font-family: Tahoma; font-size: 50px;">Newsly</span>
+                <h2 style="color: white;">Thank you for using my app</h2>
+            </div>
+        </header>
+        <div id="summary">
+            <div id="summary_content">
+                <hr>
+                <h1><img src="../static/images/newspaper.png" alt="newspaper icon" class="icons"> Full Summary of {{ news["Title"] }} from {{ news["categories"] }} category</h1>
+                <h2><img src="../static/images/summary.png" alt="summary icon" class="icons"> Short Summary: {{ news["Short Summary"] }}</h2>
+                <hr>
+                <h2><img src="../static/images/what.png" alt="what icon" class="icons"> What: {{ news["What"] }}</h2>
+                <h2><img src="../static/images/when.png" alt="when icon" class="icons"> When: {{ news["When"] }}</h2>
+                <h2><img src="../static/images/where.png" alt="where icon" class="icons"> Where: {{ news["Where"] }}</h2>
+                <h2><img src="../static/images/who.png" alt="who icon" class="icons"> Who: {{ news["Who"] }}</h2>
+                <h2><img src="../static/images/how.png" alt="how icon" class="icons"> How: {{ news["How"] }}</h2>
+                <h2><img src="../static/images/date.png" alt="date icon" class="icons"> Date: {{ news["date"] }}</h2>
+                <h2><img src="../static/images/source.png" alt="source icon" class="icons"> <a href='{{ news["url"] }}' style="color: #db0000;">Source</a></h2>
+                <hr>
+            </div>
+        </div>
+        <footer>
+            <div id="about">
+                <h1 class="headers">About</h1>
+                <h4 class="footer_text">Newsly is an app I create because I, myself, feel like I lack knowledge about the world around me. I am also quite illiterate which is why I include an AI to break down news for me. Hope this app helps others like me :)</h4>
+            </div>
+            <div id="question">
+                <h1 class="headers">Questions or ideas for me?</h1>
+                <h4 class="footer_text">Feel free to email me at <a href="mailto:sriphrakhunpiyawit@gmail.com">sriphrakhunpiyawit@gmail.com</a></h4>
+            </div>
+            <div id="social">
+                <h1 class="headers">Socials</h1>
+                <div id="social_medias_container">
+                    <div class="social_medias glow">
+                        <a href="https://www.linkedin.com/in/piyawit-sriphrakhun-a3956335a/"><i class="devicon-linkedin-plain"></i></a>
+                        <h4 class="footer_text" style="margin: 0;">Linkedin</h4>
+                    </div>
+                    <div class="social_medias glow">
+                        <a href="https://github.com/Brighter55"><i class="devicon-github-original-wordmark"></i></a>
+                        <h4 class="footer_text" style="margin: 0;">Github</h4>
+                    </div>
+                    <div class="social_medias glow">
+                        <a href="https://www.youtube.com/@PiyawitSriphrakhun"><i class="fa fa-youtube-play"></i></a>
+                        <h4 class="footer_text" style="margin: 0;">Youtube</h4>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
 
-{% block main %}
-    <h1>Full Summary of {{ news["Title"] }} from {{ news["categories"] }} category</h1>
-    <h2>Short Summary: {{ news["Short Summary"] }}</h2>
-    <h2>What: {{ news["What"] }}</h2>
-    <h2>When: {{ news["When"] }}</h2>
-    <h2>Where: {{ news["Where"] }}</h2>
-    <h2>Who: {{ news["Who"] }}</h2>
-    <h2>How: {{ news["How"] }}</h2>
-    <h2>Date: {{ news["date"] }}</h2>
-    <h2><a href='{{ news["url"] }}'>Source</a></h2>
-{% endblock %}
