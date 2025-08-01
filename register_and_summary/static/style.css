@@ -244,7 +244,7 @@ nav ul a {
 footer {
     min-height: 40vh;
     display: flex;
-    background-color: black;
+    background-color: #1b1b1b;
     color: white;
 }
 .headers {
