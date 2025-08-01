@@ -3,16 +3,28 @@
 {% block main %}
     <div id="container">
         <div id="successful_popup">
-            <i class="fa-regular fa-circle-check" style="color: #229e00;"></i>
-            <h2>Completed</h2>
-            <p>You have successfully register for the daily news</p>
-            <button id="successful_ok" class="ok_button">Ok</button>
+            <div class="pop_up_container">
+                <div class="first_half_pop_up">
+                    <i class="fa-regular fa-circle-check" style="font-size: 100px; color: white;"></i>
+                    <h2 style="color: white;">Completed</h2>
+                </div>
+                <div class="second_half_pop_up">
+                    <p style="padding: 0 20px; text-align: center; color: grey;">You have successfully register for the daily news</p>
+                    <button id="successful_ok" class="ok_button">Ok</button>
+                </div>
+            </div>
         </div>
         <div id="failed_popup">
-            <i class="fa-solid fa-xmark" style="color: #fb2323;"></i>
-            <h2>Unsuccessful</h2>
-            <p id="error_message"></p> <!---wait for error_message--->
-            <button id="failed_ok" class="ok_button">Ok</button>
+            <div class="pop_up_container">
+                <div class="first_half_pop_up">
+                    <i class="fa-solid fa-xmark" style="font-size: 100px; color: white;"></i>
+                    <h2 style="color: white;">Unsuccessful</h2>
+                </div>
+                <div class="second_half_pop_up">
+                    <p id="error_message" style="padding: 0 20px; text-align: center; color: grey;"></p> <!---wait for error_message--->
+                    <button id="failed_ok" class="ok_button">Ok</button>
+                </div>
+            </div>
         </div>
     </div>
     <section id="register">
