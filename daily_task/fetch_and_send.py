@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime, timedelta, timezone
 from newspaper import Article
+from newspaper.article import ArticleException
 from openai import OpenAI
 from pymongo import MongoClient
 from pathlib import Path
@@ -20,7 +21,7 @@ utc_yesterday = str(utc_date - timedelta(days=1))
 url = "https://api.thenewsapi.com/v1/news/top"
 root_dir = Path(__file__).resolve().parents[1]
 load_dotenv(root_dir / ".env")
-
+""" #
 params = {
     "api_token": os.getenv("THENEWSAPI_TOKEN"),
     "locale": "us,ca",
@@ -67,8 +68,11 @@ collection = db.summaries
 for category in links:
     for link in links[category]:
         article = Article(link)
-        article.download()
-        article.parse()
+        try:
+            article.download()
+            article.parse()
+        except ArticleException:
+            continue
         text = article.text
         text = clean(text)
         response = openai_client.chat.completions.create(
@@ -83,8 +87,10 @@ for category in links:
         reply["url"] = link
         reply["categories"] = category
         collection.insert_one(reply)
-
-
+"""
+mongo_client = MongoClient("localhost", 27017)
+db = mongo_client.testdb
+collection = db.summaries #
 # construct bodies for html_email
 html_bodies_data = {"Business": [], "World Events": [], "Politics": []}
 for summary in collection.find({"date": utc_yesterday}):
@@ -117,7 +123,7 @@ for user in users:
             if category == bodies_category:
                 for body in html_bodies_data[category]:
                     html_body = html_body + body
-    html_message = create_html_message(html_body, user["categories"])
+    html_message = create_html_message(html_body, user["categories"], utc_yesterday)
     payload = {
         "from": {
             "email": "noreply@new-sly.com",
@@ -137,3 +143,4 @@ for user in users:
         "Content-Type": "application/json"
     }
     requests.request("POST", url, headers=headers, json=payload)
+

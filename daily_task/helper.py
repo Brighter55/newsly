@@ -20,31 +20,33 @@ def create_html_body(summary):
     """
     return body
 
-def create_html_message(html_body, user_categories):
-    categories = ""
-    for category in user_categories:
-        categories += f" {category},"
+def create_html_message(html_body, user_categories, utc_yesterday):
+    categories = ", ".join(user_categories)
     html_message = f"""
     <!DOCTYPE html>
     <html lang="en">
         <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <title>Email</title>
+            <title>Newsly Summaries</title>
         </head>
-        <body style="background-color: white;">
-            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f5f5f5;">
+        <body>
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tbody>
                     <tr>
-                        <td align="center">
-                            <table role="presentation" max-width="600" cellpadding="0" cellspacing="0" border="0" style="background-color: #252626; padding: 20px; border-radius: 6px; font-family: Arial, sans-serif; color: white;">
+                        <td align="center" style="background-image: url(https://i.imgur.com/JxcELle.jpeg); background-color: #330805; background-size: cover; background-position: center; background-repeat: no-repeat; font-family: 'Segoe UI', sans-serif; color: white; font-size: 17px;">
+                            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="max-width: 827px; background-color: #212121; padding: 20px; border-radius: 6px;">
                                 <thead>
                                     <tr>
-                                        <td align="center" style="padding-bottom: 10px;">Newsly</td>
+                                        <td align="center" style="padding-bottom: 10px; color: #db0000; font-family: Tahoma, Verdana, sans-serif; font-size: 50px;">NEWSLY</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-bottom: 50px;">Here is your daily dose of{categories} news, summarized by AI so you don't have to waste time</td>
+                                        <td style="padding-bottom: 15px;"><span style="font-weight: bold;">Subject</span>: <img src="https://i.imgur.com/kNrlHq3.png" alt="newspaper" style="width: 18px; height: 18px;"> Your AI-Simplified News - {utc_yesterday}</td>
                                     </tr>
+                                    <tr>
+                                        <td style="padding-bottom: 50px;">Here is your daily dose of <span style="font-weight: bold;">{categories}</span> news, summarized by AI so you don't have to waste time</td>
+                                    </tr>
+                                    <hr style="margin-bottom: 50px;">
                                 </thead>
                                 <tbody>
                                     {html_body}
