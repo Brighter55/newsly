@@ -7,15 +7,22 @@ def clean(text):
     return "\n".join(lines)
 
 def create_html_body(summary):
+    if summary["categories"] == "Business":
+        title_image = "https://i.imgur.com/0s8tLEW.png"
+    elif summary["categories"] == "World Events":
+        title_image = "https://i.imgur.com/mdV4s2Q.png"
+    elif summary["categories"] == "Politics":
+        title_image = "https://i.imgur.com/iPM88ah.png"
     body = f"""
     <tr>
-        <tr><td style="font-style: italic; font-weight: bold; padding-bottom: 20px">{summary["Title"]}</td></tr>
+        <tr><td><hr style="margin: 50px 0;"></td></tr>
+        <tr><td style="font-style: italic; font-weight: bold; padding-bottom: 20px; font-size: 20px;"><img src={title_image} style="width: 21px; height: 21px;"> {summary["Title"]}</td></tr>
         <tr>
-            <tr><td style="padding-left: 30px">Summary:</td></tr>
+            <tr><td style="padding-left: 30px font-weight: bold;">Summary:</td></tr>
             <tr><td style="padding-bottom: 20px; padding-left: 30px;">{summary["Short Summary"]}</td></tr>
         </tr>
-        <tr><td style="color: lightblue; padding-bottom: 10px"><a href="http://127.0.0.1:5000/summary/{summary['_id']}" style="color: #1a73e8;">Read Full Summary</a></td></tr>
-        <tr><td><a href={summary["url"]}>Source</a></td></tr>
+        <tr><td style="padding-bottom: 10px"><img src="https://i.imgur.com/fVOFo1g.png" style="width: 18px; height: 18px;"> <a href="http://127.0.0.1:5000/summary/{summary['_id']}" style="color: #db0000; font-weight: bold;">Read Full Summary</a></td></tr>
+        <tr><td><img src="https://i.imgur.com/mq8SJSZ.png" style="width: 18px; height: 18px;"> <a href={summary["url"]} style="color: #db0000; font-weight: bold;">Source</a></td></tr>
     </tr>
     """
     return body
@@ -44,9 +51,8 @@ def create_html_message(html_body, user_categories, utc_yesterday):
                                         <td style="padding-bottom: 15px;"><span style="font-weight: bold;">Subject</span>: <img src="https://i.imgur.com/kNrlHq3.png" alt="newspaper" style="width: 18px; height: 18px;"> Your AI-Simplified News - {utc_yesterday}</td>
                                     </tr>
                                     <tr>
-                                        <td style="padding-bottom: 50px;">Here is your daily dose of <span style="font-weight: bold;">{categories}</span> news, summarized by AI so you don't have to waste time</td>
+                                        <td>Here is your daily dose of <span style="font-weight: bold;">{categories}</span> news, summarized by AI so you don't have to waste time</td>
                                     </tr>
-                                    <hr style="margin-bottom: 50px;">
                                 </thead>
                                 <tbody>
                                     {html_body}
