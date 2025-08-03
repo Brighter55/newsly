@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import JSON
 from sqlalchemy.exc import IntegrityError
-from helper import is_valid_email, apology
+from helper import is_valid_email
 from dotenv import load_dotenv
 import os
 from pathlib import Path
@@ -14,13 +14,14 @@ app = Flask(__name__)
 # connect to local postgresDB for development phase
 root_dir = Path(__file__).resolve().parents[1]
 load_dotenv(root_dir / ".env")
-app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("DATABASE_URL")
+app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRESDB_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
 # model for table storing users' gmail
-class Users(db.Model):
+class User(db.Model):
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     categories = db.Column(JSON, nullable=False)
@@ -45,7 +46,7 @@ def register():
         # check if email is already in database
         try:
             # insert user's info to postgresDB
-            new_user = Users(email=email, categories=categories)
+            new_user = User(email=email, categories=categories)
             db.session.add(new_user)
             db.session.commit()
         except IntegrityError:

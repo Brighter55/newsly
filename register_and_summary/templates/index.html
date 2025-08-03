@@ -1,100 +1,109 @@
-{% extends "layout.html" %}
-
-{% block main %}
-    <div id="container">
-        <div id="successful_popup">
-            <div class="pop_up_container">
-                <div class="first_half_pop_up">
-                    <i class="fa-regular fa-circle-check" style="font-size: 100px; color: white;"></i>
-                    <h2 style="color: white;">Completed</h2>
-                </div>
-                <div class="second_half_pop_up">
-                    <p style="padding: 0 20px; text-align: center; color: grey;">You have successfully register for the daily news</p>
-                    <button id="successful_ok" class="ok_button">Ok</button>
-                </div>
-            </div>
-        </div>
-        <div id="failed_popup">
-            <div class="pop_up_container">
-                <div class="first_half_pop_up">
-                    <i class="fa-solid fa-xmark" style="font-size: 100px; color: white;"></i>
-                    <h2 style="color: white;">Unsuccessful</h2>
-                </div>
-                <div class="second_half_pop_up">
-                    <p id="error_message" style="padding: 0 20px; text-align: center; color: grey;"></p> <!---wait for error_message--->
-                    <button id="failed_ok" class="ok_button">Ok</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <section id="register">
-        <div class="alignment">
-            <header>
-                <span style="color: #db0000; font-family: Tahoma; font-size: 50px;">Newsly</span>
-                <nav>
-                    <ul class="glow">
-                        <li><a href="#register">Register</a></li>
-                        <li><a href="#demo">Demo</a></li>
-                    </ul>
-                </nav>
-            </header>
-            <div id="register_contents">
-                <h1 id="text1">Recieve summarized news daily!</h1>
-                <h3 id="text2">Only email is needed</h3>
-                <form action="/" method="post" id="categories">
-                    <input id="email_input" name="email" type="email" placeholder="Email address">
-                    <div id="choices-container">
-                        <input name="categories" type="checkbox" id="category1" value="World Events">
-                        <label for="category1">World Events</label>
-                        <input name="categories" type="checkbox" id="category2" value="Business">
-                        <label for="category2">Business</label>
-                        <input name="categories" type="checkbox" id="category3" value="Politics">
-                        <label for="category3">Politics</label>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Newsly</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/style.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+        <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="/static/script.js"></script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="successful_popup">
+                <div class="pop_up_container">
+                    <div class="first_half_pop_up">
+                        <i class="fa-regular fa-circle-check" style="font-size: 100px; color: white;"></i>
+                        <h2 style="color: white;">Completed</h2>
                     </div>
-                    <button id="submit_button" type="submit">Get Started ></button>
-                </form>
+                    <div class="second_half_pop_up">
+                        <p style="padding: 0 20px; text-align: center; color: grey;">You have successfully register for the daily news</p>
+                        <button id="successful_ok" class="ok_button">Ok</button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
-    <section id="demo">
-        <div id="demo_contents" class="alignment">
-            <div id="demo_text">
-                <h1>Why and How to use it?</h1>
-                <h2>Watch our demo</h2>
-            </div>
-            <div id="demo_video">
-                <div id="video">
-                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TcMBFSGVi1c?si=6tL28PM4I1ie09H0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 15px; border: 2px solid lightgrey; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);"></iframe>
+            <div id="failed_popup">
+                <div class="pop_up_container">
+                    <div class="first_half_pop_up">
+                        <i class="fa-solid fa-xmark" style="font-size: 100px; color: white;"></i>
+                        <h2 style="color: white;">Unsuccessful</h2>
+                    </div>
+                    <div class="second_half_pop_up">
+                        <p id="error_message" style="padding: 0 20px; text-align: center; color: grey;"></p> <!---wait for error_message--->
+                        <button id="failed_ok" class="ok_button">Ok</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-    <footer>
-        <div id="about">
-            <h1 class="headers">About</h1>
-            <h4 class="footer_text">Newsly is an app I create because I, myself, feel like I lack knowledge about the world around me. I am also quite illiterate which is why I include an AI to break down news for me. Hope this app helps others like me :)</h4>
-        </div>
-        <div id="question">
-            <h1 class="headers">Questions or ideas for me?</h1>
-            <h4 class="footer_text">Feel free to email me at <a href="mailto:sriphrakhunpiyawit@gmail.com">sriphrakhunpiyawit@gmail.com</a></h4>
-        </div>
-        <div id="social">
-            <h1 class="headers">Socials</h1>
-            <div id="social_medias_container">
-                <div class="social_medias glow">
-                    <a href="https://www.linkedin.com/in/piyawit-sriphrakhun-a3956335a/"><i class="devicon-linkedin-plain"></i></a>
-                    <h4 class="footer_text" style="margin: 0;">Linkedin</h4>
-                </div>
-                <div class="social_medias glow">
-                    <a href="https://github.com/Brighter55"><i class="devicon-github-original-wordmark"></i></a>
-                    <h4 class="footer_text" style="margin: 0;">Github</h4>
-                </div>
-                <div class="social_medias glow">
-                    <a href="https://www.youtube.com/@PiyawitSriphrakhun"><i class="fa fa-youtube-play"></i></a>
-                    <h4 class="footer_text" style="margin: 0;">Youtube</h4>
+        <section id="register">
+            <div class="alignment">
+                <header>
+                    <span style="color: #db0000; font-family: Tahoma; font-size: 50px;">Newsly</span>
+                    <nav>
+                        <ul class="glow">
+                            <li><a href="#register">Register</a></li>
+                            <li><a href="#demo">Demo</a></li>
+                        </ul>
+                    </nav>
+                </header>
+                <div id="register_contents">
+                    <h1 id="text1">Recieve summarized news daily!</h1>
+                    <h3 id="text2">Only email is needed</h3>
+                    <form action="/" method="post" id="categories">
+                        <input id="email_input" name="email" type="email" placeholder="Email address">
+                        <div id="choices-container">
+                            <input name="categories" type="checkbox" id="category1" value="World Events">
+                            <label for="category1">World Events</label>
+                            <input name="categories" type="checkbox" id="category2" value="Business">
+                            <label for="category2">Business</label>
+                            <input name="categories" type="checkbox" id="category3" value="Politics">
+                            <label for="category3">Politics</label>
+                        </div>
+                        <button id="submit_button" type="submit">Get Started ></button>
+                    </form>
                 </div>
             </div>
-        </div>
-    </footer>
-
-{% endblock %}
+        </section>
+        <section id="demo">
+            <div id="demo_contents" class="alignment">
+                <div id="demo_text">
+                    <h1>Why and How to use it?</h1>
+                    <h2>Watch our demo</h2>
+                </div>
+                <div id="demo_video">
+                    <div id="video">
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/TcMBFSGVi1c?si=6tL28PM4I1ie09H0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="border-radius: 15px; border: 2px solid lightgrey; box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <div id="about">
+                <h1 class="headers">About</h1>
+                <h4 class="footer_text">Newsly is an app I create because I, myself, feel like I lack knowledge about the world around me. I am also quite illiterate which is why I include an AI to break down news for me. Hope this app helps others like me :)</h4>
+            </div>
+            <div id="question">
+                <h1 class="headers">Questions or ideas for me?</h1>
+                <h4 class="footer_text">Feel free to email me at <a href="mailto:sriphrakhunpiyawit@gmail.com">sriphrakhunpiyawit@gmail.com</a></h4>
+            </div>
+            <div id="social">
+                <h1 class="headers">Socials</h1>
+                <div id="social_medias_container">
+                    <div class="social_medias glow">
+                        <a href="https://www.linkedin.com/in/piyawit-sriphrakhun-a3956335a/"><i class="devicon-linkedin-plain"></i></a>
+                        <h4 class="footer_text" style="margin: 0;">Linkedin</h4>
+                    </div>
+                    <div class="social_medias glow">
+                        <a href="https://github.com/Brighter55"><i class="devicon-github-original-wordmark"></i></a>
+                        <h4 class="footer_text" style="margin: 0;">Github</h4>
+                    </div>
+                    <div class="social_medias glow">
+                        <a href="https://www.youtube.com/@PiyawitSriphrakhun"><i class="fa fa-youtube-play"></i></a>
+                        <h4 class="footer_text" style="margin: 0;">Youtube</h4>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </body>
+</html>
