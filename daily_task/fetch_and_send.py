@@ -62,8 +62,8 @@ for article in articles:
 
 #scrape website and send to openai and store data in MongoDB
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-mongo_client = MongoClient("localhost", 27017)
-db = mongo_client.testdb
+mongo_client = MongoClient(os.getenv("MONGODB_URI"))
+db = mongo_client.newslydb
 collection = db.summaries
 for category in links:
     for link in links[category]:
