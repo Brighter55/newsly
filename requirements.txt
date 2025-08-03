@@ -6,5 +6,5 @@ pathlib
 pymongo
 bson
 datetime
-newspaper
+newspaper3k
 openai
