@@ -4,7 +4,6 @@ dotenv
 sqlalchemy
 pathlib
 pymongo
-bson
 datetime
 newspaper3k
 openai
