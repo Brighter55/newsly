@@ -96,7 +96,7 @@ for summary in collection.find({"date": utc_yesterday}):
     html_bodies_data[summary["categories"]].append(body)
 
 # get users data from postgresDB
-engine = create_engine(os.getenv("DATABASE_URL"))
+engine = create_engine(os.getenv("POSTGRESDB_URI"))
 Session = sessionmaker(bind=engine)
 session = Session()
 Base = declarative_base()
