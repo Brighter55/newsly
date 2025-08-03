@@ -2,13 +2,19 @@ from flask import Flask, render_template, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import JSON
 from sqlalchemy.exc import IntegrityError
-from helper import is_valid_email
 from dotenv import load_dotenv
 import os
 from pathlib import Path
 from pymongo import MongoClient
 from bson import ObjectId
+import re
 
+def is_valid_email(email):
+    regex = r"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+    if re.match(regex, email):
+        return True
+    else:
+        return False
 
 app = Flask(__name__)
 # connect to local postgresDB for development phase

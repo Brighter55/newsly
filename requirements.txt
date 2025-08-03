@@ -1,9 +1,10 @@
 flask
-helper
 flask_sqlalchemy
 dotenv
 sqlalchemy
-sqlalchemy.exc
 pathlib
 pymongo
 bson
+datetime
+newspaper
+openai
