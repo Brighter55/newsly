@@ -59,8 +59,8 @@ def register():
 def summary(news_id):
     # get news data from mongodb
     # direct user to "full_summary.html"
-    client = MongoClient("localhost", 27017)
-    db = client.testdb
+    client = MongoClient(os.getenv("MONGODB_URI"))
+    db = client.newslydb
     collection = db.summaries
     news = collection.find({"_id": ObjectId(news_id)})[0]
     return render_template("full_summary.html", news=news)
