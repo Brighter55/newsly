@@ -46,9 +46,8 @@ def register():
             return jsonify({"success": False, "error_message": "Email is not valid"})
         # get user's category preference and check if user select at least one category
         categories = request.form.getlist("categories")
-        if not categories:
+        if not any(category in ["World Events", "Business", "Politics"] for category in categories):
             return jsonify({"success": False, "error_message": "Please select at least one category"})
-
         # check if email is already in database
         try:
             # insert user's info to postgresDB

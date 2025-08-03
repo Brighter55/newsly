@@ -8,3 +8,4 @@ datetime
 newspaper3k
 openai
 gunicorn
+psycopg2-binary
