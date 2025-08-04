@@ -21,7 +21,7 @@ def create_html_body(summary):
             <tr><td style="padding-left: 30px font-weight: bold;">Summary:</td></tr>
             <tr><td style="padding-bottom: 20px; padding-left: 30px;">{summary["Short Summary"]}</td></tr>
         </tr>
-        <tr><td style="padding-bottom: 10px"><img src="https://i.imgur.com/fVOFo1g.png" style="width: 18px; height: 18px;"> <a href="http://127.0.0.1:5000/summary/{summary['_id']}" style="color: #db0000; font-weight: bold;">Read Full Summary</a></td></tr>
+        <tr><td style="padding-bottom: 10px"><img src="https://i.imgur.com/fVOFo1g.png" style="width: 18px; height: 18px;"> <a href="https://www.new-sly.com/summary/{summary['_id']}" style="color: #db0000; font-weight: bold;">Read Full Summary</a></td></tr>
         <tr><td><img src="https://i.imgur.com/mq8SJSZ.png" style="width: 18px; height: 18px;"> <a href={summary["url"]} style="color: #db0000; font-weight: bold;">Source</a></td></tr>
     </tr>
     """
