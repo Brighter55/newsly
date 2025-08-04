@@ -9,3 +9,4 @@ newspaper3k
 openai
 gunicorn
 psycopg2-binary
+lxml_html_clean
