@@ -21,7 +21,7 @@ utc_yesterday = str(utc_date - timedelta(days=1))
 url = "https://api.thenewsapi.com/v1/news/top"
 root_dir = Path(__file__).resolve().parents[1]
 load_dotenv(root_dir / ".env")
-
+"""
 params = {
     "api_token": os.getenv("THENEWSAPI_TOKEN"),
     "locale": "us,ca",
@@ -88,7 +88,10 @@ for category in links:
         reply["categories"] = category
         collection.insert_one(reply)
 
-
+""" #
+mongo_client = MongoClient(os.getenv("MONGODB_URI"))
+db = mongo_client.newslydb
+collection = db.summaries
 # construct bodies for html_email
 html_bodies_data = {"Business": [], "World Events": [], "Politics": []}
 for summary in collection.find({"date": utc_yesterday}):
