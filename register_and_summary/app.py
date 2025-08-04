@@ -67,7 +67,7 @@ def summary(news_id):
     client = MongoClient(os.getenv("MONGODB_URI"))
     db = client.newslydb
     collection = db.summaries
-    news = collection.find({"_id": ObjectId(news_id)})[0]
+    news = collection.find_one({"_id": ObjectId(news_id)})
     return render_template("full_summary.html", news=news)
 
 
