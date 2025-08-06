@@ -17,22 +17,20 @@ def is_valid_email(email):
         return False
 
 app = Flask(__name__)
-# connect to local postgresDB for development phase
 root_dir = Path(__file__).resolve().parents[1]
 load_dotenv(root_dir / ".env")
+# set up for PostgresDB
 app.config["SQLALCHEMY_DATABASE_URI"] = os.getenv("POSTGRESDB_URI")
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-# model for table storing users' gmail
 class User(db.Model):
     __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     categories = db.Column(JSON, nullable=False)
 
-# create table once
 with app.app_context():
     db.create_all()
 
@@ -41,14 +39,12 @@ with app.app_context():
 def register():
     if request.method == "POST":
         email = request.form.get("email")
-        # validate email server-side
+        # validatations for email and categories
         if not is_valid_email(email):
             return jsonify({"success": False, "error_message": "Email is not valid"})
-        # get user's category preference and check if user select at least one category
         categories = request.form.getlist("categories")
         if not any(category in ["World Events", "Business", "Politics"] for category in categories):
             return jsonify({"success": False, "error_message": "Please select at least one category"})
-        # check if email is already in database
         try:
             # insert user's info to postgresDB
             new_user = User(email=email, categories=categories)
