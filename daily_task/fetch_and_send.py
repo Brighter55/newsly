@@ -5,7 +5,8 @@ from datetime import datetime, timedelta, timezone
 from newspaper import Article
 from newspaper.article import ArticleException
 from openai import OpenAI
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
+from pymongo.server_api import ServerApi
 from pathlib import Path
 import json
 from sqlalchemy import create_engine, Column, Integer, String, JSON
@@ -62,7 +63,7 @@ for article in articles:
 
 #scrape website and send to openai and store data in MongoDB
 openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-mongo_client = MongoClient(os.getenv("MONGODB_URI"))
+mongo_client = MongoClient(os.getenv("MONGODB_URI"), server_api=ServerApi('1'))
 db = mongo_client.newslydb
 collection = db.summaries
 for category in links:

@@ -1,0 +1,23 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+flask = "*"
+flask-sqlalchemy = "*"
+dotenv = "*"
+sqlalchemy = "*"
+pathlib = "*"
+datetime = "*"
+newspaper3k = "*"
+openai = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+lxml-html-clean = "*"
+pymongo = {extras = ["srv"], version = "*"}
+
+[dev-packages]
+
+[requires]
+python_version = "3.14"
